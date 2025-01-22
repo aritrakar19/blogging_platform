@@ -10,8 +10,7 @@ app.use(express.json()); // To parse JSON bodies
 app.use(cors()); // To handle CORS issues
 
 mongoose.connect("mongodb+srv://Aritrakar19:RNWjg.YAgCDwCy2@cluster0.4byyy.mongodb.net/test?retryWrites=true&w=majority&tls=true",
-  {useNewUrlParser: true,
-    useUnifiedTopology: true,
+  {
     tls: true,
   }
 )
