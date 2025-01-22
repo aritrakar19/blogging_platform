@@ -16,6 +16,10 @@ mongoose.connect("mongodb+srv://Aritrakar19:RNWjg.YAgCDwCy2@cluster0.4byyy.mongo
   }
 )
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Blogging website');
+});
+
 // POST route for contact form
 app.post('/api/contact', (req, res) => {
   console.log(req.body);
