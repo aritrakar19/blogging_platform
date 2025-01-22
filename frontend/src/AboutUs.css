@@ -1,0 +1,156 @@
+/* AboutUs.css */
+
+/* General Styles */
+.section {
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .text-container {
+    max-width: 50%;
+    margin-bottom: 20px; /* Space between text and image */
+  }
+  
+  .heading4 {
+    color: #ff4d4f;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: "Kanit", serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  .heading1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    /* font-family: "Kanit", serif;
+  font-weight: 800;
+  font-style: italic; */
+  }
+  
+  .paragraph {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    font-family: "Kanit", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .box-paragraph{
+    font-family: "Kanit", serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .button {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 25px;
+    font-family: "Kanit", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .image-container {
+    max-width: 45%;
+  }
+  
+  .image {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  .mission-vision-approach {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap; /* Stack boxes on smaller screens */
+  }
+  
+  .box {
+    text-align: center;
+    flex: 1;
+    min-width: 250px; /* Ensures that boxes don't become too small */
+  }
+  
+  .box-heading {
+    color: #ff4d4f;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-weight: 800;
+    /* font-family: 'Courier New', Courier, monospace; */
+    /* font-family: "Courier Prime", serif;
+  font-weight: 800;
+  font-style: normal; */
+  }
+  
+  .image-container {
+    display: inline-block;
+    border-radius: 8px; /* Slight rounding of the container edges */
+    overflow: hidden;   /* Ensures the shadow respects the rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image {
+    width: 100%; /* Ensures the image takes the width of its container */
+    display: block; /* Removes extra spacing around the image */
+  }
+  
+  
+  /* Media Queries for Mobile View */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px; /* Adjust padding for small screens */
+    }
+  
+    .text-container {
+      max-width: 100%; /* Full width for text on small screens */
+      margin-bottom: 20px;
+    }
+  
+    .heading1 {
+      font-size: 2rem; /* Smaller font size for headings on mobile */
+    }
+  
+    .button {
+      padding: 8px 16px; /* Adjust button size on mobile */
+      font-size: 0.9rem; /* Smaller font size for button */
+    }
+  
+    .image-container {
+      max-width: 100%; /* Full width for image on mobile */
+      margin-bottom: 20px; /* Add space below the image */
+    }
+  
+    .mission-vision-approach {
+      flex-direction: column; /* Stack boxes vertically on small screens */
+      gap: 20px; /* Add space between stacked boxes */
+    }
+  
+    .box {
+      width: 100%; /* Ensure boxes take full width on mobile */
+      margin-bottom: 20px; /* Add space between each box */
+    }
+  }
+  
