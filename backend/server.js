@@ -9,7 +9,7 @@ const port = 5000;
 app.use(express.json()); // To parse JSON bodies
 app.use(cors()); // To handle CORS issues
 
-mongoose.connect("mongodb+srv://Aritrakar19:RNWjg.YAgCDwCy2@cluster0.4byyy.mongodb.net/")
+mongoose.connect("mongodb+srv://Aritrakar19:RNWjg.YAgCDwCy2@cluster0.4byyy.mongodb.net/test")
 
 // POST route for contact form
 app.post('/api/contact', (req, res) => {
