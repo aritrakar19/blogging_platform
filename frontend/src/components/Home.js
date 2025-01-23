@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "../Home.css";
-import imgage from "../img/imgage.jpg"
 
 const Home = () => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
@@ -43,17 +42,19 @@ const Home = () => {
           property="og:image"
           content="https://example.com/path-to-your-image.jpg"
         />
-        <meta property="og:url" content="https://blog-verse-omega.vercel.app/#home" />
-        {/* <meta name="twitter:card" content="summary_large_image" /> */}
+        <meta
+          property="og:url"
+          content="https://blog-verse-omega.vercel.app/#home"
+        />
       </Helmet>
       <div
         id="home"
         style={{
-          backgroundImage:`url(${imgage})`,
-          
-          // 'url("https://img.freepik.com/free-photo/black-white-portrait-digital-nomads_23-2151253998.jpg?t=st=1737178021~exp=1737181621~hmac=11bada85625ab8eb196ce8c663ddb874b983999da58610e43e3219c27b1da199&w=996")',
+          backgroundImage:
+            "url(https://media.istockphoto.com/id/932763106/photo/cheerful-young-brunet-freelancer-is-smiling-typing-on-his-laptop-in-nice-modern-work-station.jpg?s=612x612&w=0&k=20&c=vsiKYyHnoYiqTNt3r04oqcfMFFrL_OZivyzNC5Y_FLI=)",
           backgroundSize: "cover",
           backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           height: "100vh",
           display: "flex",
           alignItems: "center",
@@ -61,14 +62,29 @@ const Home = () => {
           color: "#fff",
           padding: "0 50px",
           position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
           style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "#013d65",
+            opacity: 0.7,
+            zIndex: 1,
+          }}
+        ></div>
+
+        <div
+          style={{
             textAlign: "center",
             animation: "fadeIn 1s ease-in-out",
+            position: "relative",
+            zIndex: 2, 
           }}
-          aria-live="polite"
         >
           <h1
             style={{
@@ -77,7 +93,6 @@ const Home = () => {
               marginBottom: "20px",
               fontWeight: "bold",
               textShadow: "2px 2px 5px rgba(0, 0, 0, 0.5)",
-              fontWeight: 800,
               fontStyle: "italic",
               margin: "10px 0",
             }}
@@ -93,6 +108,7 @@ const Home = () => {
             display: "flex",
             justifyContent: "center",
             gap: "10px",
+            zIndex: 2,
           }}
         >
           {quotes.map((_, index) => (

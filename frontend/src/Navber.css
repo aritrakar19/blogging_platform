@@ -9,6 +9,8 @@ html {
     position: relative;
     display: inline-block;
     padding-bottom: 5px;
+    font-size: 17px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   }
   
   .menu-link::after {
