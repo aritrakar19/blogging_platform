@@ -84,5 +84,177 @@
 }
 
 .read-more:hover {
+  background-color: #fd696b;
+}
+
+.blog-form {
+  margin: 20px auto;
+  padding: 15px;
+  max-width: 500px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-form h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.blog-form input,
+.blog-form textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.blog-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.blog-form button:hover {
   background-color: #0056b3;
+}
+
+.post-blog-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ff4d4f;
+  color: #fff;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  font-weight: bold;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  animation: fast-jump 2s ease-in-out infinite;
+}
+
+.post-blog-btn:hover {
+  background-color: #f7686a;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.post-blog-btn:active {
+  background-color: #fc5d60;
+  transform: scale(0.95);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fast-jump {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-20px); /* Adjust the jump height */
+  }
+  50% {
+    transform: translateY(0); /* Pause at the top of the jump */
+  }
+  75% {
+    transform: translateY(-20px); /* Jump again */
+  }
+}
+
+.post-blog-btn:hover {
+  animation: bounce 0.6s;
+}
+
+
+.modal-bottom-right {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1000;
+  animation: slide-up 0.3s ease;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.form-group textarea {
+  resize: none;
+  height: 80px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.submit-btn {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  background-color: #f7686a;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: black;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background-color: #999;
 }

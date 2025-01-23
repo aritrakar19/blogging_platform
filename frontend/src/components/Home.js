@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "../Home.css";
+import AboutUs from '../components/AboutUs';
+import BlogCard from "../components/BlogCard";
+import Contact from '../components/Contact';
 
 const Home = () => {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
@@ -127,7 +130,11 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <AboutUs />
+      <BlogCard />
+      <Contact />
     </>
+    
   );
 };
 
