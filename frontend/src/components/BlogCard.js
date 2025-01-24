@@ -134,7 +134,7 @@ function BlogCard() {
       {isModalOpen && (
         <div className="modal-bottom-right">
           <div className="modal-content">
-            <h2>Post a New Blog</h2>
+            <h2>Post a New Blogs</h2>
             <form onSubmit={handlePostBlog}>
               <div className="form-group">
                 <label>Category</label>
