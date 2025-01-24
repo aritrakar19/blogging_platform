@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import "../BlogCard.css";
+import axios from "axios";
 
 function BlogCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -9,42 +9,84 @@ function BlogCard() {
     category: "",
     title: "",
     description: "",
+    author: "",
   });
-  const navigate = useNavigate();
+  const [apiBlogs, setApiBlogs] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const blogs = [
+  // Hardcoded blogs with correct dates
+  const staticBlogs = [
     {
       id: 1,
       category: "Culture",
-      date: "Jul 5th '22",
+      date: "2022-07-05",
       title: "Exploring the Heart of Global Cultures",
       description:
         "Our culture fosters innovation, inclusivity, and a commitment to excellence, driving growth and success.",
+      author: "John Doe",
     },
     {
       id: 2,
       category: "Sport",
-      date: "Jul 5th '22",
+      date: "2022-07-05",
       title: "Unleashing the Power of Sports Passion",
       description:
         "Sport unites us, promoting teamwork, discipline, and resilience, empowering individuals to achieve greatness.",
+      author: "Jane Doe",
     },
     {
       id: 3,
       category: "Tech",
-      date: "Mar 1st '22",
+      date: "2022-03-01",
       title: "Innovating the Future with Technology",
       description:
         "Tech empowers progress, revolutionizing industries, enhancing efficiency, and shaping the future.",
+      author: "Alice Smith",
     },
   ];
 
-  
+  // Fetch blogs from the API
+  const fetchBlogs = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/api/blogs");
+      console.log("API Response: ", response); // Log API response to check date field
 
-  const handlePostBlog = (e) => {
+      if (response.data.success) {
+        const blogsWithDates = response.data.blogs.map((blog) => ({
+          ...blog,
+          date: blog.date || "Unknown Date", // Ensure date fallback
+        }));
+        setApiBlogs(blogsWithDates);
+      }
+    } catch (error) {
+      setMessage("Failed to fetch blogs. Please try again.");
+      console.error(error);
+    }
+  };
+
+  // Fetch blogs on component mount
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Merge static and API blogs
+  const allBlogs = [...staticBlogs, ...apiBlogs];
+
+  const handlePostBlog = async (e) => {
     e.preventDefault();
-    console.log("Posted Blog:", blogData);
-    setIsModalOpen(false); // Close modal
+    try {
+      const currentDate = new Date().toISOString().split("T")[0]; // ISO date in YYYY-MM-DD format
+      const blogPayload = { ...blogData, date: currentDate };
+
+      const response = await axios.post("http://localhost:5000/api/blogs", blogPayload);
+      setMessage(response.data.message);
+      setIsModalOpen(false);
+      setBlogData({ category: "", title: "", description: "", author: "" });
+      fetchBlogs(); // Refresh the blog list
+    } catch (error) {
+      setMessage("Failed to post blog. Please try again.");
+      console.error(error);
+    }
   };
 
   const handleInputChange = (e) => {
@@ -70,20 +112,17 @@ function BlogCard() {
         <h1>Blogs</h1>
       </div>
       <div className="blog-container">
-        {blogs.map((blog, index) => (
+        {allBlogs.map((blog, index) => (
           <div key={index} className="blog-card">
             <div className="blog-content">
               <p className="blog-meta">
                 <span className="blog-category">{blog.category}</span> •{" "}
-                {blog.date}
+                {blog.date || "Unknown Date"}
               </p>
               <h3 className="blog-title">{blog.title}</h3>
               <p className="blog-description">{blog.description}</p>
-              <button
-                className="read-more"
-              >
-                Read More
-              </button>
+              {/* <p className="blog-author">Posted by: {blog.author ? blog.author : "Anonymous"}</p> */}
+              <button className="read-more">Read More</button>
             </div>
           </div>
         ))}
@@ -126,6 +165,17 @@ function BlogCard() {
                   value={blogData.description}
                   onChange={handleInputChange}
                   placeholder="Enter blog description"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Author</label>
+                <input
+                  type="text"
+                  name="author"
+                  value={blogData.author}
+                  onChange={handleInputChange}
+                  placeholder="Enter author name"
                   required
                 />
               </div>
