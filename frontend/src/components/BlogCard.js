@@ -168,17 +168,7 @@ function BlogCard() {
                   required
                 />
               </div>
-              <div className="form-group">
-                <label>Author</label>
-                <input
-                  type="text"
-                  name="author"
-                  value={blogData.author}
-                  onChange={handleInputChange}
-                  placeholder="Enter author name"
-                  required
-                />
-              </div>
+              
               <div className="modal-actions">
                 <button type="submit" className="submit-btn">
                   Post Blog
