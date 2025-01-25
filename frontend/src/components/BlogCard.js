@@ -74,11 +74,13 @@ function BlogCard() {
 
   const handlePostBlog = async (e) => {
     e.preventDefault();
+    const currentDate = new Date().toISOString().split("T")[0];
+    const blogPayload = { ...blogData, date: currentDate };
+  
+    console.log("Blog Payload: ", blogPayload); // Debugging
     try {
-      const currentDate = new Date().toISOString().split("T")[0]; // ISO date in YYYY-MM-DD format
-      const blogPayload = { ...blogData, date: currentDate };
-
       const response = await axios.post("http://localhost:5000/api/blogs", blogPayload);
+      console.log("API Response: ", response.data); // Debugging
       setMessage(response.data.message);
       setIsModalOpen(false);
       setBlogData({ category: "", title: "", description: "", author: "" });
@@ -121,7 +123,6 @@ function BlogCard() {
               </p>
               <h3 className="blog-title">{blog.title}</h3>
               <p className="blog-description">{blog.description}</p>
-              {/* <p className="blog-author">Posted by: {blog.author ? blog.author : "Anonymous"}</p> */}
               <button className="read-more">Read More</button>
             </div>
           </div>
