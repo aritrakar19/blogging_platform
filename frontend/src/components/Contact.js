@@ -9,6 +9,8 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,27 +19,38 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setFeedback("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/contact", formData)
+      const response = await axios.post(
+        "http://localhost:5000/api/contact",
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-      const data = await response.data;
-      console.log('ghjg',data, response.data);
-      
       if (response.status === 200) {
-        console.log("Message sent successfully:", data);
-        alert("Message sent successfully: " + JSON.stringify(data));
+        setFeedback("Message sent successfully!");
         setFormData({
           name: "",
           email: "",
-          message: ""
+          message: "",
         });
-      } else {
-        alert("Failed to send message: " + JSON.stringify(data));
+
+        setTimeout(() => {
+          window.location.reload(); 
+        }, 1000); 
       }
     } catch (error) {
-      console.error("Error sending message:", error);
-      alert("Error sending message: " + error.message);
+      if (error.response) {
+        setFeedback(`Error: ${error.response.data.message || "Server error"}`);
+      } else {
+        setFeedback(`Network error: ${error.message}`);
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -60,7 +73,6 @@ const Contact = () => {
           content="https://example.com/path-to-your-contact-page-image.jpg"
         />
         <meta property="og:url" content="https://blog-verse-omega.vercel.app/#contact" />
-        {/* <meta name="twitter:card" content="summary_large_image" /> */}
       </Helmet>
       <div
         style={{
@@ -70,7 +82,6 @@ const Contact = () => {
           minHeight: "100vh",
           backgroundColor: "#f4f4f4",
           padding: "20px",
-          marginTop: "20px",
         }}
       >
         <div
@@ -104,6 +115,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                disabled={loading} 
                 style={{
                   padding: "10px",
                   fontSize: "1rem",
@@ -129,6 +141,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                disabled={loading}
                 style={{
                   padding: "10px",
                   fontSize: "1rem",
@@ -153,6 +166,7 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
+                disabled={loading} 
                 style={{
                   padding: "10px",
                   fontSize: "1rem",
@@ -178,12 +192,20 @@ const Contact = () => {
                 cursor: "pointer",
                 transition: "background-color 0.3s",
               }}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
             >
-              Submit
+              {loading ? "Sending..." : "Submit"}
             </button>
           </form>
+          {feedback && (
+            <p
+              style={{
+                marginTop: "15px",
+                color: feedback.startsWith("Error") ? "red" : "green",
+              }}
+            >
+              {feedback}
+            </p>
+          )}
         </div>
       </div>
     </>
