@@ -48,7 +48,7 @@ function BlogCard() {
   // Fetch blogs from the API
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/blogs");
+      const response = await axios.get("https://blogging-platform-1-93lj.onrender.com/api/blogs");
       console.log("API Response: ", response); // Log API response to check date field
 
       if (response.data.success) {
@@ -79,7 +79,7 @@ function BlogCard() {
   
     console.log("Blog Payload: ", blogPayload); // Debugging
     try {
-      const response = await axios.post("http://localhost:5000/api/blogs", blogPayload);
+      const response = await axios.post("https://blogging-platform-1-93lj.onrender.com/api/blogs", blogPayload);
       console.log("API Response: ", response.data); // Debugging
       setMessage(response.data.message);
       setIsModalOpen(false);
