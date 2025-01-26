@@ -50,7 +50,6 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-// Routes
 app.get("/", (req, res) => {
   res.send("Welcome to the Blogging website API");
 });
