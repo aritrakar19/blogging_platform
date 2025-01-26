@@ -14,7 +14,6 @@ function BlogCard() {
   const [apiBlogs, setApiBlogs] = useState([]);
   const [message, setMessage] = useState("");
 
-  // Hardcoded blogs with correct dates
   const staticBlogs = [
     {
       id: 1,
@@ -45,16 +44,15 @@ function BlogCard() {
     },
   ];
 
-  // Fetch blogs from the API
   const fetchBlogs = async () => {
     try {
       const response = await axios.get("https://blogging-platform-1-93lj.onrender.com/api/blogs");
-      console.log("API Response: ", response); // Log API response to check date field
+      console.log("API Response: ", response); 
 
       if (response.data.success) {
         const blogsWithDates = response.data.blogs.map((blog) => ({
           ...blog,
-          date: blog.date || "Unknown Date", // Ensure date fallback
+          date: blog.date || "Unknown Date", 
         }));
         setApiBlogs(blogsWithDates);
       }
@@ -64,12 +62,10 @@ function BlogCard() {
     }
   };
 
-  // Fetch blogs on component mount
   useEffect(() => {
     fetchBlogs();
   }, []);
 
-  // Merge static and API blogs
   const allBlogs = [...staticBlogs, ...apiBlogs];
 
   const handlePostBlog = async (e) => {
@@ -77,14 +73,14 @@ function BlogCard() {
     const currentDate = new Date().toISOString().split("T")[0];
     const blogPayload = { ...blogData, date: currentDate };
   
-    console.log("Blog Payload: ", blogPayload); // Debugging
+    console.log("Blog Payload: ", blogPayload);
     try {
       const response = await axios.post("https://blogging-platform-1-93lj.onrender.com/api/blogs", blogPayload);
-      console.log("API Response: ", response.data); // Debugging
+      console.log("API Response: ", response.data);
       setMessage(response.data.message);
       setIsModalOpen(false);
       setBlogData({ category: "", title: "", description: "", author: "" });
-      fetchBlogs(); // Refresh the blog list
+      fetchBlogs(); 
     } catch (error) {
       setMessage("Failed to post blog. Please try again.");
       console.error(error);

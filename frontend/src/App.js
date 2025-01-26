@@ -4,8 +4,6 @@ import { Helmet } from 'react-helmet';
 import Navber from './components/Navber';
 import Home from './components/Home';
 import Footer from './components/Footer';
-// import BlogDetails from './components/BlogDetails';
-import BlogDetails from './pages/BlogDetails';
 
 function App() {
   return (
@@ -25,7 +23,6 @@ function App() {
         <Navber />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/blog/:id" element={<BlogDetails />} /> 
         </Routes>
         <Footer />
       </div>

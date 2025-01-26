@@ -158,13 +158,13 @@
     transform: translateY(0);
   }
   25% {
-    transform: translateY(-20px); /* Adjust the jump height */
+    transform: translateY(-20px); 
   }
   50% {
-    transform: translateY(0); /* Pause at the top of the jump */
+    transform: translateY(0); 
   }
   75% {
-    transform: translateY(-20px); /* Jump again */
+    transform: translateY(-20px); 
   }
 }
 
